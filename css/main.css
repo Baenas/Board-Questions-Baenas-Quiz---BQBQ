@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+body{
+    font-family: 'Raleway', sans-serif;
+background-color: blanchedalmond;
+}
+
+.nav{
+    display: flex;
+align-items: center;
+justify-content: center;
+background-color:rgb(114, 185, 185) ;
+padding: 10px;
+border-bottom: solid  brown  2px  ;
+
+border-top: brown solid 2px;
+border-bottom: brown solid 2px;
+
+}
+
+.navbaritem{
+ 
+    background-color:#8bbed8 ;
+    box-shadow: 1px 1px 1px 1px rgb(151, 151, 151);
+margin-left: 30px;
+font-family: 'Playfair Display', serif;
+font-weight: bold;
+padding: 10px;
+}
+.navbaritem:hover{
+color: brown;
+box-shadow: 1px 1px 1px 1px rgb(75, 74, 74);
+
+font-weight: bold;
+}
+.containernav{
+    width: 70%;
+    height: 20%;
+    margin: 0 auto;
+    
+        box-shadow: 5px 5px 5px rgb(138, 111, 111);
+       
+      
+     
+        
+    }
+.container{
+width: 50%;
+
+margin: 0 auto;
+
+  
+   
+  
+ 
+    
+}
+.crosscursor{
+    cursor: crosshair;
+}
+.navbarsubitem{
+       font-weight: bold; 
+}
+.navbarsubitem:hover{
+   color: black;
+}
+
+.displaynone{
+
+    display: none;
+}
+
+.textcenter{
+
+    text-align: center;
+}
+
+.half50{
+ 
+    width: 47%;
+    float: left;
+}
+.half100{
+ 
+    width: 100%;
+    float: left;
+}
+

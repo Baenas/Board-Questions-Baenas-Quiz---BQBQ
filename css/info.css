@@ -1,0 +1,73 @@
+.panelinfo{
+  background-color: rgb(114, 185, 185) ;
+
+  box-shadow: 5px 5px 5px rgb(138, 111, 111);
+       
+  width: 20%;
+}
+.tituloPlayername{
+  width: 90%;
+  margin:0 auto;
+  margin-top: 10px;
+  border:solid white .1px;
+padding:3px;
+font-weight: bold;
+  background-color: rosybrown;
+}
+
+.bodyplayer{
+  width: 90%;
+  margin:0 auto;
+ padding: 5px;
+  border:solid white .1px;
+padding:3px;
+  background-color: silver;
+}
+.infopoints{
+
+  font-weight: bold;
+}
+
+.pointsplayerall{
+  
+  font-weight: bold;
+}
+.titulodado{
+  width: 100%;
+  background-color: silver;
+  border-bottom: solid 2px slategray;
+  font-weight: bold;
+}
+.imagedice {
+  box-shadow: 3px 3px  3px rgb(80, 80, 133);
+  background-color: slategray;
+width: 120px;
+margin-bottom: 25px;
+}
+.imagedice:hover {
+  box-shadow: 3px 3px  3px rgb(153, 153, 197);
+  
+}
+.infodado{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.diceresult{
+  box-shadow: 3px 3px  3px rgb(80, 80, 133);
+  background-color: slategray;
+width: 120px;
+margin-bottom: 25px;
+height: 30px;
+font-weight: bold;
+font-size: 25px;
+text-align: center;
+border: none;
+color: black;
+}
+.diceresult:hover{
+ cursor: context-menu;
+ box-shadow: 3px 3px  3px rgb(153, 153, 197);
+ color: rgb(59, 7, 7);
+}

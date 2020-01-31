@@ -1,0 +1,86 @@
+.sectionbg{
+  width: 100%;
+  
+}
+.subtitlewindow{
+
+  font-weight: bold;
+padding: 4px 4px;
+background-color: rgb(114, 185, 185) ;
+font-family: 'Playfair Display', serif;
+box-shadow: 2px 2px 2px 1px  rgb(92, 88, 88);
+}
+.sectionbg{
+  padding:10px;
+background-color: rgba(0, 0, 0, 0.3);
+}
+.settingscontainer{
+  padding-top: 20px;
+ 
+  
+  margin: 0 auto;
+
+}
+.subtitlewindowtwo{
+  font-family: 'Playfair Display', serif;
+
+  font-weight: bold;
+padding: 4px 4px;
+font-size: 20px;
+background-color: rgb(114, 185, 185) ;
+box-shadow: 2px 2px 2px 1px  rgb(92, 88, 88);
+}
+
+.textinputwindow , .textinputwindowlittle {
+  margin-bottom: 20px;
+  width: 90%;
+  font-family: 'Playfair Display', serif;
+border: 0px;
+color: black;
+font-weight: bold;
+height: 25px;
+
+text-align: center;
+ box-shadow: 2px 2px 2px 1px  rgb(92, 88, 88);
+
+}
+.textinputwindowsmall{
+  margin-bottom: 20px;
+  width: 10%;
+  font-family: 'Playfair Display', serif;
+border: 0px;
+color: black;
+font-weight: bold;
+height: 25px;
+text-align: center;
+ box-shadow: 2px 2px 2px 1px  rgb(92, 88, 88);
+
+}
+.textinputwindow::placeholder{ 
+color: black;
+font-weight: bold;
+text-align: center;
+font-family: 'Playfair Display', serif;
+}
+.textinputwindowlittle{
+width: 30px;
+}
+.titlewindow{
+  font-weight: bold;
+  padding: 4px 4px;
+  background-color: antiquewhite;
+  box-shadow: 2px 2px 2px 1px  rgb(92, 88, 88);
+  }
+ .float{
+background-color: burlywood;
+   padding-top: 150px;
+   margin: 0 auto;
+   width: 30%;
+   
+ }
+ .playerbox{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+ }

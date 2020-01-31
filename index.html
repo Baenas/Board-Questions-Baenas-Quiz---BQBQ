@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/settings.css">
+	<link rel="stylesheet" href="css/768orless.css">
+	<link rel="stylesheet" href="css/info.css">
+	<link rel="stylesheet" href="css/game.css">
+</head>
+
+<body>
+	<script>
+		sessionStorage.clear();
+	</script>
+
+	<div id="" class="containernav">
+
+		<!-- abre nav -->
+		<div class="nav">
+			<span class=" crosscursor navbaritem" id="">DEV</span>
+			<span class=" crosscursor navbaritem" id="horanow">Hora</span>
+			<span class="crosscursor navbaritem" id="horanow">Turno de Jugador <span id="playerturno"
+					class="navbarsubitem">undefined</span> </span>
+			<span class="crosscursor navbaritem" id="horanow">Estado de la partida <span id="estadopartida"
+					class="navbarsubitem">SIN INICIAR</span> </span>
+
+		</div>
+	</div>
+	<!-- cierra  nav -->
+	<!-- abre loades y container -->
+
+
+	<!-- cierra loades y container -->
+	<div id="container" class="container">
+		<div class="" id="settings">
+
+			<h2 class=" subtitlewindow textcenter">Parametros de la partida</h2>
+
+
+
+			<section class="sectionbg half50">
+
+				<h3 class=" textcenter subtitlewindow">Jugadores</h3>
+
+
+				<div class="textcenter playerbox  half50 ">
+					<p class="subtitlewindowtwo" onclick="" id="player1addsettings"> Jugador 1</p>
+					<input class="textinputwindow" type="text" placeholder="Name" value="Player One" alt="Name" name=""
+						id="player1settings">
+					<!-- 	<img src="img/dicesmal2.png" id="rndname1" width="60px" alt=""> -->
+				</div>
+
+				<div class="textcenter  playerbox  half50 ">
+					<p class="subtitlewindowtwo" onclick="" id="player2addsettings"> Jugador 2 </p>
+					<input class="textinputwindow" type="text" placeholder="Name" value="Player Two	" alt="Name" name=""
+						id="player2settings">
+					<!-- 					<img src="img/dicesmal2.png"  id="rndname2" width="60px" alt=""> -->
+				</div>
+
+
+			</section>
+
+			<div class="textcenter playerbox  half100 ">
+				<p class=""><input id="btnLoadGame" class="subtitlewindowtwo" type="button" value="Play">
+					<!-- <input id="createGameWindowButtonPlayers" class="subtitlewindowtwo" type="button"
+					onclick="settingsWindowsResetParent()" value="Reset"></p> -->
+
+			</div>
+			</section>
+
+
+		</div>
+
+	</div>
+	<div id="containergame" class="  displaynone">
+		<div id="" class=" parentgame  gamepanel ">
+			<div id="panelinfo" class="panelinfo">
+				<div id="boxinfo1" class=" displaynone infoplayer1">
+					<div class="tituloPlayername   textcenter" id="infop1"> <span class="" id="nameplayer1">Player
+							One</span> </div>
+					<div class="bodyplayer"><span class="infopoints"> Puntos :</span><span id="pointsplayerone"
+							class="pointsplayerall"></span></div>
+				</div>
+				<div id="boxinfo2" class="  displaynone infoplayer2">
+					<div class="tituloPlayername textcenter" id="infop2"> <span class="" id="nameplayer2">Player
+							Two</span> </div>
+					<div class="bodyplayer"><span class="infopoints"> Puntos :</span><span id="pointsplayertwo"
+							class="pointsplayerall"></span></div>
+				</div>
+
+				<div class="infodado">
+					<p class=" titulodado textcenter" id=""> <span id="">Dado</span> </p>
+					<img id="dadoon" class="imagedice" src="img/dicesmal2.png" alt="">
+					<input id="diceresult" class="diceresult" disabled type="text" value="1">
+				</div>
+
+			</div>
+
+			<div id="containertablero" class="containertablero">
+
+
+			</div>
+
+			</divcl>
+
+		</div>
+		<script src="js/globals.js"></script>
+		<script src="js/glovarsGame.js"></script>
+
+		<script src="js/Players/Player.js"></script>
+		<script src="js/Game/GameController.js"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
