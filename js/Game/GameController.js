@@ -7,8 +7,7 @@ class GameController {
     ]
     
   
-    this.valorcasilla = 0;
-
+    this.valorcasilla = valorcasilla;
   }
   move(playerName) {
 
@@ -51,119 +50,29 @@ class GameController {
 
   }
 
-  generateMap1(numerofila, cuadroancho, canti) {
-    let x = 0;
-    let y = 0;
+  generateMap1(cols, rows,size) {
 
-
-    for (let count = 0; count < canti; count++) {
-
-      for (let ind = 0; ind < numerofila; ind++) {
-        let js = 0;
-        let html = 1;
-        let css = 2;
-
-       
-        y = ind;
-
-        const cont1 = document.getElementById('containertablero');
-        let cuadro = document.createElement('div');
-        let player = document.createElement('span');
-        
-
-        cuadro.className = "boxv1";
-
-        //  cuadro.innerHTML = `x${x} y${y} `; 
-
-        cuadro.id = `box-x${x}-y${y}`;
-        /*       
-            cuadro.innerHTML = count +1 ;
-               */
-        cont1.style.width = cuadroancho * numerofila + cuadroancho + "px"
-        cont1.appendChild(cuadro);
-        cuadro.style.width = `${cuadroancho}px`;
-        cuadro.style.height = `${cuadroancho}px`;
-
-        /* 
-                cuadro.innerHTML += Math.floor(Math.random() * 3) + 1  ; */
-        
-        
-        if (cuadro.id == `box-x${0}-y${y}` ) {
-
-
-         
-          cuadro.setAttribute('data-border', 'border');
-
-          
-          cuadro.innerHTML = cuadro.getAttribute('data-box')
-          this.valorcasilla++;
-          this.arraypositions.push(`Casilla ${this.valorcasilla -1}`,x,y);
-          
-          cuadro.innerHTML = `Casilla ${this.valorcasilla - 1}`;
-
-        } 
-
-        
-else if (cuadro.id == `box-x${x}-y${canti - 1}`) {
-          
-          
-        
-
-          cuadro.setAttribute('data-border', 'border');
-
-
-          cuadro.innerHTML = cuadro.getAttribute('data-box')
-          this.valorcasilla++;
-          this.arraypositions.push(`Casilla ${this.valorcasilla - 1}`, x, y);
-
-          cuadro.innerHTML = `Casilla ${this.valorcasilla - 1}`;
-        }
-       
-        if (cuadro.id == `box-x${numerofila - 1}-y${ind}`) {
-          this.valorcasilla = 1;
-          let internalvalue = 16;
-          internalvalue = internalvalue - ind;
-          // cuadro.setAttribute('data-box', this.valorcasilla);
-          cuadro.setAttribute('data-border', 'border');
-
-
-          this.valorcasilla = internalvalue;
-          cuadro.style.backgroundColor = "white";
-          this.valorcasilla--;
-
-          this.arraypositions.push(`Casilla ${this.valorcasilla}`, x, y);
-
-          cuadro.innerHTML = `Casilla ${this.valorcasilla} `;
-
-        }  
-        
-        if (cuadro.id == `box-x${count}-y${0}`) {
-          this.valorcasilla = 1;
-          let internalvalue = 16;
-          internalvalue = internalvalue - ind;
-          // cuadro.setAttribute('data-box', this.valorcasilla);
-          cuadro.setAttribute('data-border', 'border');
-
-
-          this.valorcasilla = internalvalue;
-          cuadro.style.backgroundColor = "gray";
-          this.valorcasilla--;
-
-          this.arraypositions.push(`Casilla ${this.valorcasilla}`, x, y);
-
-          cuadro.innerHTML = `Casilla ${this.valorcasilla} `;
-
-        }  
-
-        
-        
-        
-        
-        
-      }
-      x = x + 1;
-      
-    }
+    let parentgame = document.getElementById('board'); 
+    parentgame.innerHTML = `
+  <div class="square">1</div>
+  <div class="square">2</div>
+  <div class="square">3</div>
+  <div class="square">4</div>
+  <div class="square">5</div>
+  <div class="square">6</div>
+  <div class="square">7</div>
+  <div class="square">8</div>
+  <div class="square">9</div>
+  <div class="square">10</div>
+  <div class="square">11</div>
+  <div class="square">12</div>
+  <div class="square">13</div>
+  <div class="square">14</div>
+  <div class="square">15</div>
+  <div class="square">16</div>
+`;
+    
+    
     
   }
   
@@ -179,20 +88,20 @@ else if (cuadro.id == `box-x${x}-y${canti - 1}`) {
 
 
 
-    let ubip1 = document.querySelector(`#containertablero #box-x${PlayerNum.x}-y${PlayerNum.y}`);
+    // let ubip1 = document.querySelector(`#containertablero #box-x${PlayerNum.x}-y${PlayerNum.y}`);
 
-    let posbox = document.createElement('span');
+    // let posbox = document.createElement('span');
 
-    posbox.innerHTML = stringname;
+    // posbox.innerHTML = stringname;
 
-    ubip1.appendChild(posbox)
+    // ubip1.appendChild(posbox)
 
 
 
   }
 
 }
-Controlador = new GameController(0)
+Controlador = new GameController(0,0)
 
 window.addEventListener('load', () => {
 
@@ -219,7 +128,7 @@ document.getElementById('player2addsettings').addEventListener('click', () => {
 
 document.getElementById('btnLoadGame').addEventListener('click', () => {
   Controlador.gameLoad()
-  Controlador.generateMap1(6, 60, 6)
+  Controlador.generateMap1(4,4,100)
 
 
 
