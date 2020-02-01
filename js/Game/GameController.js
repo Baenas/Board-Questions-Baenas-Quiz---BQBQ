@@ -1,7 +1,13 @@
 class GameController {
 
-  constructor(numplayer) {
+  constructor(numplayer,valorcasilla,arraypositions) {
     this.numplayer = numplayer;
+    this.arraypositions = [
+    {name:'casilla 1',x:0,y:0}
+    ]
+    
+  
+    this.valorcasilla = 0;
 
   }
   move(playerName) {
@@ -57,14 +63,13 @@ class GameController {
         let html = 1;
         let css = 2;
 
-
-
+       
         y = ind;
 
         const cont1 = document.getElementById('containertablero');
         let cuadro = document.createElement('div');
         let player = document.createElement('span');
-        player.innerHTML = "1"
+        
 
         cuadro.className = "boxv1";
 
@@ -81,42 +86,87 @@ class GameController {
 
         /* 
                 cuadro.innerHTML += Math.floor(Math.random() * 3) + 1  ; */
+        
+        
+        if (cuadro.id == `box-x${0}-y${y}` ) {
 
 
-        if (cuadro.id == `box-x${x}-y${0}`) {
-          cuadro.style.backgroundColor = ""
-          cuadro.setAttribute('data-box', '4');
+         
           cuadro.setAttribute('data-border', 'border');
 
-        } else if (cuadro.id == `box-x${count}-y${canti - 1}`) {
+          
+          cuadro.innerHTML = cuadro.getAttribute('data-box')
+          this.valorcasilla++;
+          this.arraypositions.push(`Casilla ${this.valorcasilla -1}`,x,y);
+          
+          cuadro.innerHTML = `Casilla ${this.valorcasilla - 1}`;
 
+        } 
 
-          cuadro.setAttribute('data-box', '2');
+        
+else if (cuadro.id == `box-x${x}-y${canti - 1}`) {
+          
+          
+        
+
           cuadro.setAttribute('data-border', 'border');
-        } else if (cuadro.id == `box-x${0}-y${y}`) {
 
 
-          cuadro.setAttribute('data-box', '1');
-          cuadro.setAttribute('data-border', 'border');
-        } else if (cuadro.id == `box-x${canti - 1}-y${ind}`) {
+          cuadro.innerHTML = cuadro.getAttribute('data-box')
+          this.valorcasilla++;
+          this.arraypositions.push(`Casilla ${this.valorcasilla - 1}`, x, y);
 
-
-          cuadro.setAttribute('data-box', '3');
-          cuadro.setAttribute('data-border', 'border');
-        } else {
-          cuadro.style.backgroundColor = "white"
-          cuadro.innerHTML = "";
-
+          cuadro.innerHTML = `Casilla ${this.valorcasilla - 1}`;
         }
+       
+        if (cuadro.id == `box-x${numerofila - 1}-y${ind}`) {
+          this.valorcasilla = 1;
+          let internalvalue = 16;
+          internalvalue = internalvalue - ind;
+          // cuadro.setAttribute('data-box', this.valorcasilla);
+          cuadro.setAttribute('data-border', 'border');
 
 
+          this.valorcasilla = internalvalue;
+          cuadro.style.backgroundColor = "white";
+          this.valorcasilla--;
+
+          this.arraypositions.push(`Casilla ${this.valorcasilla}`, x, y);
+
+          cuadro.innerHTML = `Casilla ${this.valorcasilla} `;
+
+        }  
+        
+        if (cuadro.id == `box-x${count}-y${0}`) {
+          this.valorcasilla = 1;
+          let internalvalue = 16;
+          internalvalue = internalvalue - ind;
+          // cuadro.setAttribute('data-box', this.valorcasilla);
+          cuadro.setAttribute('data-border', 'border');
+
+
+          this.valorcasilla = internalvalue;
+          cuadro.style.backgroundColor = "gray";
+          this.valorcasilla--;
+
+          this.arraypositions.push(`Casilla ${this.valorcasilla}`, x, y);
+
+          cuadro.innerHTML = `Casilla ${this.valorcasilla} `;
+
+        }  
+
+        
+        
+        
+        
+        
       }
       x = x + 1;
-
+      
     }
-
+    
   }
-
+  
   dado6() {
     let res;
     res = Math.floor(Math.random() * 6) + 1
