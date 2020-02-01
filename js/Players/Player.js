@@ -1,13 +1,13 @@
 class Players {
 
-  constructor(id, name, puntos, x, y) {
+  constructor(id, name, puntos, pos,color) {
 
     this.id = id;
     this.name = name;
 
     this.puntos = puntos
-    this.x = x;
-    this.y = y;
+    this.pos= pos;
+    this.color = color;
   }
 
 
