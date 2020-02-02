@@ -9,12 +9,28 @@ class GameController {
 
     this.valorcasilla = valorcasilla;
   }
-  move(playerName, steps) {
-    playerName.pos += steps
+  move(playerName, steps, boxrnd) {
+
+    if (playerName.pos + steps > 16) {
 
 
+      steps = 0;
 
-    this.locateplayer(playerName, 'P1', 1, playerName.pos)
+      playerName.pos = steps;
+
+
+    } else if (playerName.pos + steps <= 16) {
+
+      playerName.pos += steps
+
+      this.locateplayer(playerName, 'P1', boxrnd, playerName.pos)
+
+      let postochange = document.querySelector(`#pos${playerName.pos} .box${boxrnd}`);
+      // postochange.style.backgroundColor = "red"
+
+    }
+
+
   }
   setPlayerOne() {
 
@@ -45,14 +61,23 @@ class GameController {
 
 
   }
+  dado4() {
+    let res;
+    res = Math.floor(Math.random() * 4) + 1
 
+    return res;
+  }
   dado6() {
     let res;
     res = Math.floor(Math.random() * 6) + 1
     diceresult.value = res;
     return res;
   }
+  turnotirar() {
 
+    Controlador.move(Player1, Controlador.dado6(), Controlador.dado4());
+
+  }
   locateplayer(PlayerNum, stringname, positionbox, ubicacion) {
 
 
@@ -65,8 +90,9 @@ class GameController {
 
 
 
+
     posbox.innerHTML = stringname;
-    posbox.style.backgroundColor = PlayerNum.color;
+    // posbox.style.backgroundColor = PlayerNum.color;
   }
 
 }
@@ -78,6 +104,8 @@ window.addEventListener('load', () => {
   gamestatus.innerHTML = 'Selecciona Jugador';
 
 })
+
+
 
 document.getElementById('player1addsettings').addEventListener('click', () => {
 
@@ -124,8 +152,7 @@ document.getElementById('btnLoadGame').addEventListener('click', () => {
 
 })
 document.getElementById('dadoon').addEventListener('click', () => {
+  Controlador.turnotirar();
 
-
-  Controlador.move(Player1, Controlador.dado6());
 
 })

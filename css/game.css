@@ -25,12 +25,23 @@
   font-size: 15px;
 
 
+
+}
+.redtext{
+  color: red;;
+}
+.greentext{
+  color: green;
+}
+.box1,.box2, .box3, .box4{
+height: 3vw;
+  width: 3vw;
+font-size: 30px;
+ font-family: 'Raleway', sans-serif;
 }
 .box1{
-  background-color: wheat;
+  background-color:lightskyblue;
   color: black ;
-  height: 5vw;
-  width: 5vw;
   border: solid black 1px;
 
 float: left;
@@ -39,15 +50,13 @@ float: left;
  background-color: wheat;
   color: black;
 border: solid black 1px;
-  height: 5vw;
-  width: 5vw;
+
 float: left;
 }
 .box3{
   background-color: wheat;
   color: black;
-  height: 5vw;
-  width: 5vw;
+
   border: solid black 1px;
 border: solid black 1px;
 
@@ -59,8 +68,7 @@ float: left;
 
   background-color: wheat;
   color: black;
-  height: 5vw;
-  width: 5vw;
+  
 float: left;
 }
 
@@ -76,8 +84,8 @@ float: left;
   align-content: center;
   grid-gap: 1rem;
   margin-left: 20px;
-  grid-template-columns: repeat(5, 11vw);
-  grid-template-rows: repeat(5, 11vw);
+  grid-template-columns: repeat(5, 7vw);
+  grid-template-rows: repeat(5, 7vw);
 }
 .square  {
   
