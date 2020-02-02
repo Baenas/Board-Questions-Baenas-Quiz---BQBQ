@@ -1,14 +1,15 @@
 class GameController {
 
-  constructor(numplayer, valorcasilla, primero, segundo) {
+  constructor(numplayer, valorcasilla, primero, segundo, pause, pregunta) {
     this.numplayer = numplayer;
 
     this.primero = primero;
     this.segundo = segundo;
     this.tiradaspl1 = 0;
     this.tiradaspl2 = 0;
-
+    this.pause = pause;
     this.valorcasilla = valorcasilla;
+
   }
   move(playerName, boxrnd) {
 
@@ -16,7 +17,7 @@ class GameController {
       playerName.pos += 1;
       document.getElementById('float1').classList.remove('displaynone')
       document.getElementById('float2').classList.remove('displaynone')
-
+      this.showquestion(playerName)
       this.locateplayer(playerName, `P${playerName.id}`, boxrnd, playerName.pos)
     }
     if (playerName.pos == 16) {
@@ -24,7 +25,30 @@ class GameController {
 
     }
   }
+  showquestion(player) {
+    // document.getElementById('floatplayer').innerHTML = player.name;
+    document.getElementById('typequestion').innerHTML = Controlador.dado3();
+    document.getElementById('dadoon').classList.add('displaynone')
 
+
+    document.getElementById('q').innerHTML = PreguntasList.tesq[0].pregunta;
+
+    document.getElementById('r1').innerHTML = PreguntasList.tesq[0].r1;
+
+    document.getElementById('r2').innerHTML = PreguntasList.tesq[0].r2;
+
+    document.getElementById('r3').innerHTML = PreguntasList.tesq[0].r3;
+
+    document.getElementById('r4').innerHTML = PreguntasList.tesq[0].r4;
+
+  }
+  getanswer(id, cq) {
+    if (id == PreguntasList.tesq[0].cq) {
+      document.getElementById('float1').classList.add('displaynone')
+      document.getElementById('dadoon').classList.remove('displaynone')
+    }
+
+  }
   setPlayerOne() {
 
 
@@ -77,6 +101,9 @@ class GameController {
         break;
     }
     diceresult.value = typequestions;
+
+    return typequestions;
+
   }
   turnotirar() {
     Controlador.move(Player1, Controlador.dado4());
@@ -131,7 +158,9 @@ class GameController {
   }
 
 }
-Controlador = new GameController(0, 0, 1, 2)
+Controlador = new GameController(0, 0, 1, 2, 0)
+
+PreguntasList = new Pregu();
 
 window.addEventListener('load', () => {
 
@@ -190,11 +219,31 @@ document.getElementById('btnLoadGame').addEventListener('click', () => {
   }
 
 })
-document.getElementById('dadoon').addEventListener('click', () => {
+document.getElementById('r1').addEventListener('click', () => {
+  Controlador.getanswer('r1', `${PreguntasList.tesq[0].cq}`)
+
+})
+
+document.getElementById('r2').addEventListener('click', () => {
+  Controlador.getanswer('r2', `${PreguntasList.tesq[0].cq}`)
+
+})
+document.getElementById('r3').addEventListener('click', () => {
+  Controlador.getanswer('r3', `${PreguntasList.tesq[0].cq}`)
+
+})
+document.getElementById('r4').addEventListener('click', () => {
+  Controlador.getanswer('r4', `${PreguntasList.tesq[0].cq}`)
+
+})
+document.getElementById('dadoon').addEventListener('click', function a() {
   if (Controlador.numplayer == 1) {
     Controlador.turnotirar();
   } else if (Controlador.numplayer == 2) {
     Controlador.turnotirar2();
+  }
+  if (this.pause == 1) {
+    this.removeEventListener('click', a)
   }
 
 
