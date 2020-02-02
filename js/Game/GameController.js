@@ -1,37 +1,30 @@
 class GameController {
 
-  constructor(numplayer, valorcasilla, arraypositions) {
+  constructor(numplayer, valorcasilla, primero, segundo) {
     this.numplayer = numplayer;
-    this.arraypositions = [
-      { name: 'casilla 1', x: 0, y: 0 }
-    ]
 
+    this.primero = primero;
+    this.segundo = segundo;
+    this.tiradaspl1 = 0;
+    this.tiradaspl2 = 0;
 
     this.valorcasilla = valorcasilla;
   }
-  move(playerName, steps, boxrnd) {
+  move(playerName, boxrnd) {
 
-    if (playerName.pos + steps > 16) {
+    if (playerName.pos < 16) {
+      playerName.pos += 1;
+      document.getElementById('float1').classList.remove('displaynone')
+      document.getElementById('float2').classList.remove('displaynone')
 
-
-      steps = 0;
-
-      playerName.pos = steps;
-
-
-    } else if (playerName.pos + steps <= 16) {
-
-      playerName.pos += steps
-
-      this.locateplayer(playerName, 'P1', boxrnd, playerName.pos)
-
-      let postochange = document.querySelector(`#pos${playerName.pos} .box${boxrnd}`);
-      // postochange.style.backgroundColor = "red"
+      this.locateplayer(playerName, `P${playerName.id}`, boxrnd, playerName.pos)
+    }
+    if (playerName.pos == 16) {
+      console.log('ganador')
 
     }
-
-
   }
+
   setPlayerOne() {
 
 
@@ -67,16 +60,47 @@ class GameController {
 
     return res;
   }
-  dado6() {
-    let res;
-    res = Math.floor(Math.random() * 6) + 1
-    diceresult.value = res;
-    return res;
+  dado3() {
+
+    let res = Math.floor(Math.random() * 3) + 1
+    let typequestions;
+
+    switch (res) {
+      case 1:
+        typequestions = "CSS";
+        break;
+      case 2:
+        typequestions = "HTML";
+        break;
+      case 3:
+        typequestions = "JS";
+        break;
+    }
+    diceresult.value = typequestions;
   }
   turnotirar() {
+    Controlador.move(Player1, Controlador.dado4());
+    console.log(`- - -  1: ${this.tiradaspl1}`)
+    playerturno.innerHTML = Player1.name;
+  }
 
-    Controlador.move(Player1, Controlador.dado6(), Controlador.dado4());
 
+  turnotirar2() {
+    if (this.primero == 1) {
+      playerturno.innerHTML = Player2.name;
+      Controlador.move(Player1, Controlador.dado4());
+      this.tiradaspl1++;
+      this.primero = 2;
+      this.segundo = 1;
+      console.log(`- - -  1: ${this.tiradaspl1}`)
+    } else if (this.segundo == 1) {
+      playerturno.innerHTML = Player1.name;
+      Controlador.move(Player2, Controlador.dado4());
+      this.tiradaspl2++;
+      this.primero = 1;
+      this.segundo = 2;
+      console.log(`- - -  2: ${this.tiradaspl2}`)
+    }
   }
   locateplayer(PlayerNum, stringname, positionbox, ubicacion) {
 
@@ -88,15 +112,26 @@ class GameController {
     // posbox.innerHTML += stringname;
 
 
+    if (posbox.innerHTML != "") {
+      console.log('esta lleno')
+
+      PlayerNum.pos -= 1;
+      Controlador.move(PlayerNum, Controlador.dado4())
+
+
+      posbox.innerHTML = `P${PlayerNum.id - 1}`;
+    } else {
+      posbox.innerHTML = stringname;
+    }
 
 
 
-    posbox.innerHTML = stringname;
+
     // posbox.style.backgroundColor = PlayerNum.color;
   }
 
 }
-Controlador = new GameController(0, 0)
+Controlador = new GameController(0, 0, 1, 2)
 
 window.addEventListener('load', () => {
 
@@ -133,6 +168,8 @@ document.getElementById('btnLoadGame').addEventListener('click', () => {
 
 
   if (Controlador.numplayer == 2) {
+    playerturno.innerHTML = Player1.name;
+
     Controlador.locateplayer(Player1, "P1", 1, 1)
     Controlador.locateplayer(Player2, "P2", 2, 1)
     infoplayer2box.classList.remove('displaynone')
@@ -144,6 +181,8 @@ document.getElementById('btnLoadGame').addEventListener('click', () => {
 
   }
   if (Controlador.numplayer == 1) {
+    playerturno.innerHTML = Player1.name;
+
     pointsplayerOne.innerHTML = Player1.puntos;
     Controlador.locateplayer(Player1, "P1", 1, 1)
     infoplayer1box.classList.remove('displaynone')
@@ -152,7 +191,12 @@ document.getElementById('btnLoadGame').addEventListener('click', () => {
 
 })
 document.getElementById('dadoon').addEventListener('click', () => {
-  Controlador.turnotirar();
+  if (Controlador.numplayer == 1) {
+    Controlador.turnotirar();
+  } else if (Controlador.numplayer == 2) {
+    Controlador.turnotirar2();
+  }
+
 
 
 })

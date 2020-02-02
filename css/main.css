@@ -86,3 +86,36 @@ margin: 0 auto;
     float: left;
 }
 
+.float1{
+    border-radius: 5%;
+border: solid white 5px;
+    background-color: gray;
+    width:50%; 
+    height:50%; 
+    position: fixed; 
+    padding: 10px;;
+    top: 25%; 
+    left: 25%; 
+    bottom: 25%;
+    right: 25%;
+    z-index: 1000;
+}
+.float2{
+   
+
+    background-color: rgb(41, 41, 41);
+    width:100vw; 
+    height:100vh; 
+  
+
+    /* top: 25%; 
+    left: 25%; 
+    bottom: 25%;
+    right: 25%; */
+    z-index: 800;
+}
+
+.addonfloat{
+
+    background-color: gray;;
+}
