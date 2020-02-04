@@ -27,6 +27,8 @@
 
 
 }
+
+ 
 .redtext{
   color: red;;
 }
@@ -174,4 +176,9 @@ float: left;
     grid-column: 1;
   }
 
-  
+  .verde{
+  background-color: lightgreen;
+}
+  .red{
+  background-color: salmon;
+}

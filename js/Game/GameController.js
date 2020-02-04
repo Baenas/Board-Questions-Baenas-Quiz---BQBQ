@@ -1,6 +1,6 @@
 class GameController {
 
-  constructor(numplayer, valorcasilla, primero, segundo, pause, pregunta) {
+  constructor(numplayer, valorcasilla, primero, segundo, pause, playernow, typeq) {
     this.numplayer = numplayer;
 
     this.primero = primero;
@@ -9,16 +9,19 @@ class GameController {
     this.tiradaspl2 = 0;
     this.pause = pause;
     this.valorcasilla = valorcasilla;
-
+    this.playerow = playernow;
+    this.typeq = typeq;
   }
   move(playerName, boxrnd) {
 
     if (playerName.pos < 16) {
       playerName.pos += 1;
-      document.getElementById('float1').classList.remove('displaynone')
-      document.getElementById('float2').classList.remove('displaynone')
+
+
       this.showquestion(playerName)
       this.locateplayer(playerName, `P${playerName.id}`, boxrnd, playerName.pos)
+      this.playernow = document.querySelector(`#pos${playerName.pos} .box${boxrnd}`);
+
     }
     if (playerName.pos == 16) {
       console.log('ganador')
@@ -26,26 +29,44 @@ class GameController {
     }
   }
   showquestion(player) {
+
+
+
     // document.getElementById('floatplayer').innerHTML = player.name;
-    document.getElementById('typequestion').innerHTML = Controlador.dado3();
+    let diceto = document.getElementById('typequestion').innerHTML;
+    this.typeq = Controlador.dado3();
     document.getElementById('dadoon').classList.add('displaynone')
 
+    if (PreguntasList.getquestion(this.typeq).type == 'return') {
+      document.getElementById('float2').classList.remove('displaynone')
+    } else {
 
-    document.getElementById('q').innerHTML = PreguntasList.tesq[0].pregunta;
+      document.getElementById('float1').classList.remove('displaynone')
+    }
+    document.getElementById('q').innerHTML = PreguntasList.getquestion(this.typeq).pregunta;
 
-    document.getElementById('r1').innerHTML = PreguntasList.tesq[0].r1;
+    document.getElementById('valorreturn').innerHTML = PreguntasList.getquestion(this.typeq).valorreturn;
 
-    document.getElementById('r2').innerHTML = PreguntasList.tesq[0].r2;
+    document.getElementById('r1').innerHTML = PreguntasList.getquestion(this.typeq).r1;
 
-    document.getElementById('r3').innerHTML = PreguntasList.tesq[0].r3;
+    document.getElementById('r2').innerHTML = PreguntasList.getquestion(this.typeq).r2;
 
-    document.getElementById('r4').innerHTML = PreguntasList.tesq[0].r4;
+    document.getElementById('r3').innerHTML = PreguntasList.getquestion(this.typeq).r3;
+
+    document.getElementById('r4').innerHTML = PreguntasList.getquestion(this.typeq).r4;
 
   }
   getanswer(id, cq) {
-    if (id == PreguntasList.tesq[0].cq) {
+    if (id == PreguntasList.getquestion(this.typeq).cq) {
+      document.getElementById('float2').classList.add('displaynone')
       document.getElementById('float1').classList.add('displaynone')
       document.getElementById('dadoon').classList.remove('displaynone')
+      this.playernow.classList.add('verde');
+    } else {
+      document.getElementById('float2').classList.add('displaynone')
+      document.getElementById('float1').classList.add('displaynone')
+      document.getElementById('dadoon').classList.remove('displaynone')
+      this.playernow.classList.add('red');
     }
 
   }
@@ -66,6 +87,7 @@ class GameController {
   gameLoad() {
     document.getElementById('settings').classList.add('displaynone')
     document.getElementById('containergame').classList.remove('displaynone')
+
 
 
   }
@@ -91,13 +113,13 @@ class GameController {
 
     switch (res) {
       case 1:
-        typequestions = "CSS";
+        typequestions = "css";
         break;
       case 2:
-        typequestions = "HTML";
+        typequestions = "html";
         break;
       case 3:
-        typequestions = "JS";
+        typequestions = "js";
         break;
     }
     diceresult.value = typequestions;
@@ -144,7 +166,7 @@ class GameController {
 
       PlayerNum.pos -= 1;
       Controlador.move(PlayerNum, Controlador.dado4())
-
+      PlayerNum.last = positionbox;
 
       posbox.innerHTML = `P${PlayerNum.id - 1}`;
     } else {
@@ -158,7 +180,7 @@ class GameController {
   }
 
 }
-Controlador = new GameController(0, 0, 1, 2, 0)
+Controlador = new GameController(0, 0, 1, 2, 0, "Player1")
 
 PreguntasList = new Pregu();
 
@@ -199,8 +221,8 @@ document.getElementById('btnLoadGame').addEventListener('click', () => {
   if (Controlador.numplayer == 2) {
     playerturno.innerHTML = Player1.name;
 
-    Controlador.locateplayer(Player1, "P1", 1, 1)
-    Controlador.locateplayer(Player2, "P2", 2, 1)
+    Controlador.locateplayer(Player1, "P1", 1, 1, 0)
+    Controlador.locateplayer(Player2, "P2", 2, 1, 0)
     infoplayer2box.classList.remove('displaynone')
     infoplayer1box.classList.remove('displaynone')
     pointsplayerOne.innerHTML = Player1.puntos;
@@ -220,20 +242,20 @@ document.getElementById('btnLoadGame').addEventListener('click', () => {
 
 })
 document.getElementById('r1').addEventListener('click', () => {
-  Controlador.getanswer('r1', `${PreguntasList.tesq[0].cq}`)
+  Controlador.getanswer('r1', PreguntasList.getquestion(Controlador.typeq).cq)
 
 })
 
 document.getElementById('r2').addEventListener('click', () => {
-  Controlador.getanswer('r2', `${PreguntasList.tesq[0].cq}`)
+  Controlador.getanswer('r2', PreguntasList.getquestion(Controlador.typeq).cq)
 
 })
 document.getElementById('r3').addEventListener('click', () => {
-  Controlador.getanswer('r3', `${PreguntasList.tesq[0].cq}`)
+  Controlador.getanswer('r3', PreguntasList.getquestion(Controlador.typeq).cq)
 
 })
 document.getElementById('r4').addEventListener('click', () => {
-  Controlador.getanswer('r4', `${PreguntasList.tesq[0].cq}`)
+  Controlador.getanswer('r4', PreguntasList.getquestion(Controlador.typeq).cq)
 
 })
 document.getElementById('dadoon').addEventListener('click', function a() {
