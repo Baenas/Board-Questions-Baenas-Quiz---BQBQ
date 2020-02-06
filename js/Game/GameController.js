@@ -1,8 +1,7 @@
 class GameController {
 
-  constructor(numplayer, valorcasilla, primero, segundo, pause, playernow, typeq) {
+  constructor(numplayer, valorcasilla, primero, segundo, pause, playernow, typeq, actual, nameplayer) {
     this.numplayer = numplayer;
-
     this.primero = primero;
     this.segundo = segundo;
     this.tiradaspl1 = 0;
@@ -10,7 +9,9 @@ class GameController {
     this.pause = pause;
     this.valorcasilla = valorcasilla;
     this.playerow = playernow;
+    this.actual = actual;
     this.typeq = typeq;
+    this.nameplayer = nameplayer;
   }
   move(playerName, boxrnd) {
 
@@ -19,8 +20,12 @@ class GameController {
 
 
       this.showquestion(playerName)
-      this.locateplayer(playerName, `P${playerName.id}`, boxrnd, playerName.pos)
-      this.playernow = document.querySelector(`#pos${playerName.pos} .box${boxrnd}`);
+      this.locateplayer(playerName, `P${playerName.id}`, playerName.id, playerName.pos)
+
+      this.actual = playerName.puntos;
+
+      console.log(`puntos ${playerName.name} tiene ${playerName.puntos}`)
+      this.playernow = document.querySelector(`#pos${playerName.pos} .box${playerName.id}`);
 
     }
     if (playerName.pos == 16) {
@@ -30,43 +35,63 @@ class GameController {
   }
   showquestion(player) {
 
-
+    PreguntasList.getquestion();
 
     // document.getElementById('floatplayer').innerHTML = player.name;
     let diceto = document.getElementById('typequestion').innerHTML;
     this.typeq = Controlador.dado3();
     document.getElementById('dadoon').classList.add('displaynone')
-
-    if (PreguntasList.getquestion(this.typeq).type == 'return') {
+    if (PreguntasList.type == 'return') {
       document.getElementById('float2').classList.remove('displaynone')
     } else {
 
       document.getElementById('float1').classList.remove('displaynone')
     }
-    document.getElementById('q').innerHTML = PreguntasList.getquestion(this.typeq).pregunta;
+    document.getElementById('q').innerHTML = PreguntasList.pregunta;
 
-    document.getElementById('valorreturn').innerHTML = PreguntasList.getquestion(this.typeq).valorreturn;
+    document.getElementById('valorreturn').innerHTML = PreguntasList.valorreturn;
 
-    document.getElementById('r1').innerHTML = PreguntasList.getquestion(this.typeq).r1;
+    document.getElementById('r1').innerHTML = PreguntasList.r1;
 
-    document.getElementById('r2').innerHTML = PreguntasList.getquestion(this.typeq).r2;
+    document.getElementById('r2').innerHTML = PreguntasList.r2;
 
-    document.getElementById('r3').innerHTML = PreguntasList.getquestion(this.typeq).r3;
+    document.getElementById('r3').innerHTML = PreguntasList.r3;
 
-    document.getElementById('r4').innerHTML = PreguntasList.getquestion(this.typeq).r4;
+    document.getElementById('r4').innerHTML = PreguntasList.r4;
 
   }
+
+  reset1() {
+    document.getElementById('q').innerHTML = "";
+    document.getElementById('valorreturn').innerHTML = "";
+    document.getElementById('r1').innerHTML = "";
+    document.getElementById('r2').innerHTML = "";
+    document.getElementById('r3').innerHTML = "";
+    document.getElementById('r4').innerHTML = "";
+  }
   getanswer(id, cq) {
-    if (id == PreguntasList.getquestion(this.typeq).cq) {
+    if (id == cq) {
+
+      console.log(`id${id} cq${cq}`)
       document.getElementById('float2').classList.add('displaynone')
-      document.getElementById('float1').classList.add('displaynone')
+      // document.getElementById('float1').classList.add('displaynone')
       document.getElementById('dadoon').classList.remove('displaynone')
       this.playernow.classList.add('verde');
-    } else {
+      this.actual += 1;
+
+      this.nameplayer.puntos += 1;
+      Controlador.puntos()
+      Controlador.reset1();
+    } else if (id != cq) {
+
+      console.log(`id${id} cq${cq}`)
       document.getElementById('float2').classList.add('displaynone')
-      document.getElementById('float1').classList.add('displaynone')
+      // document.getElementById('float1').classList.add('displaynone')
       document.getElementById('dadoon').classList.remove('displaynone')
       this.playernow.classList.add('red');
+
+      Controlador.puntos()
+      Controlador.reset1();
     }
 
   }
@@ -87,18 +112,22 @@ class GameController {
   gameLoad() {
     document.getElementById('settings').classList.add('displaynone')
     document.getElementById('containergame').classList.remove('displaynone')
-
+    // document.getElementById('containertablero').classList.add('displaynone')
 
 
   }
 
   generateMap1() {
+    let tablero = document.getElementById('containertablero2');
 
+    let tablerohtml = "";
+    for (let index = 0; index < 2; index++) {
 
-
-
-
-
+      tablerohtml +=
+        `
+    `
+    }
+    tablero.innerHTML += tablerohtml;
   }
   dado4() {
     let res;
@@ -113,13 +142,13 @@ class GameController {
 
     switch (res) {
       case 1:
-        typequestions = "css";
+        typequestions = " 1 P";
         break;
       case 2:
-        typequestions = "html";
+        typequestions = " 1 P";
         break;
       case 3:
-        typequestions = "js";
+        typequestions = " 2 P";
         break;
     }
     diceresult.value = typequestions;
@@ -131,6 +160,7 @@ class GameController {
     Controlador.move(Player1, Controlador.dado4());
     console.log(`- - -  1: ${this.tiradaspl1}`)
     playerturno.innerHTML = Player1.name;
+    this.nameplayer = Player1;
   }
 
 
@@ -141,6 +171,7 @@ class GameController {
       this.tiradaspl1++;
       this.primero = 2;
       this.segundo = 1;
+      this.nameplayer = Player1;
       console.log(`- - -  1: ${this.tiradaspl1}`)
     } else if (this.segundo == 1) {
       playerturno.innerHTML = Player1.name;
@@ -149,6 +180,23 @@ class GameController {
       this.primero = 1;
       this.segundo = 2;
       console.log(`- - -  2: ${this.tiradaspl2}`)
+      this.nameplayer = Player2;
+    }
+  }
+
+  puntos(player) {
+    if (Controlador.numplayer == 1) {
+      pointsplayerOne.innerHTML = Player1.puntos;
+
+    }
+
+
+    if (Controlador.numplayer == 2) {
+
+      pointsplayerOne.innerHTML = Player1.puntos;
+      pointsplayertwo.innerHTML = Player2.puntos;
+
+
     }
   }
   locateplayer(PlayerNum, stringname, positionbox, ubicacion) {
@@ -242,20 +290,20 @@ document.getElementById('btnLoadGame').addEventListener('click', () => {
 
 })
 document.getElementById('r1').addEventListener('click', () => {
-  Controlador.getanswer('r1', PreguntasList.getquestion(Controlador.typeq).cq)
+  Controlador.getanswer('r1', PreguntasList.cq)
 
 })
 
 document.getElementById('r2').addEventListener('click', () => {
-  Controlador.getanswer('r2', PreguntasList.getquestion(Controlador.typeq).cq)
+  Controlador.getanswer('r2', PreguntasList.cq)
 
 })
 document.getElementById('r3').addEventListener('click', () => {
-  Controlador.getanswer('r3', PreguntasList.getquestion(Controlador.typeq).cq)
+  Controlador.getanswer('r3', PreguntasList.cq)
 
 })
 document.getElementById('r4').addEventListener('click', () => {
-  Controlador.getanswer('r4', PreguntasList.getquestion(Controlador.typeq).cq)
+  Controlador.getanswer('r4', PreguntasList.cq)
 
 })
 document.getElementById('dadoon').addEventListener('click', function a() {
@@ -271,3 +319,4 @@ document.getElementById('dadoon').addEventListener('click', function a() {
 
 
 })
+
