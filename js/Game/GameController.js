@@ -1,6 +1,6 @@
 class GameController {
 
-  constructor(numplayer, valorcasilla, primero, segundo, pause, playernow, typeq, actual, nameplayer) {
+  constructor(numplayer, valorcasilla, primero, segundo, pause, playernow, typeq, actual, nameplayer, map) {
     this.numplayer = numplayer;
     this.primero = primero;
     this.segundo = segundo;
@@ -12,11 +12,17 @@ class GameController {
     this.actual = actual;
     this.typeq = typeq;
     this.nameplayer = nameplayer;
+    this.map = map;
+    this.maxtowin = 0;
   }
   move(playerName, boxrnd) {
 
-    if (playerName.pos < 16) {
-      playerName.pos += 1;
+    if (playerName.pos == this.maxtowin && this.numplayer == 1) {
+      this.winshow(1);
+    } else if (this.numplayer == 2 && Player2.pos == this.maxtowin) {
+      this.winshow(2);
+    }
+    if (playerName.pos < this.maxtowin) {
 
 
       this.showquestion(playerName)
@@ -24,14 +30,55 @@ class GameController {
 
       this.actual = playerName.puntos;
 
-      console.log(`puntos ${playerName.name} tiene ${playerName.puntos}`)
-      this.playernow = document.querySelector(`#pos${playerName.pos} .box${playerName.id}`);
+      // console.log(`puntos ${playerName.name} tiene ${playerName.puntos}`)
+      this.playernow = document.querySelector(`#${this.map}${playerName.pos} .box${playerName.id}`);
+
+
+      console.log(`${this.maxtowin} max to win -- ${playerName.pos}`)
+
+      playerName.pos += 1;
+    }
+
+
+
+  }
+
+  winshow(playersnumber) {
+    let ganador = undefined;
+    if (playersnumber == 1) {
+      ganador = Player1;
+      document.getElementById('r1win').innerHTML = Player1.name;
+      document.getElementById('r2win').innerHTML = 'NP';
+
 
     }
-    if (playerName.pos == 16) {
-      console.log('ganador')
 
+
+    if (playersnumber == 2) {
+
+      if (Player1.puntos > Player2.puntos) {
+        ganador = Player1;
+        document.getElementById('r1win').innerHTML = Player1.name;
+        document.getElementById('r2win').innerHTML = Player2.name;
+      } else if (Player2.puntos > Player1.puntos) {
+        ganador = Player2
+        document.getElementById('r1win').innerHTML = Player2.name;
+        document.getElementById('r2win').innerHTML = Player1.name;
+      }
     }
+
+    document.getElementById('float3').classList.remove('displaynone')
+    document.getElementById('qwin').innerHTML = `Ganador ${ganador.name}`;
+
+    document.getElementById('valorreturnwin').innerHTML = "";
+
+    document.getElementById('r1').innerHTML = "";
+
+    document.getElementById('r2').innerHTML = "";
+
+    document.getElementById('r3').innerHTML = "";
+
+    document.getElementById('r4').innerHTML = "";
   }
   showquestion(player) {
 
@@ -41,12 +88,9 @@ class GameController {
     let diceto = document.getElementById('typequestion').innerHTML;
     this.typeq = Controlador.dado3();
     document.getElementById('dadoon').classList.add('displaynone')
-    if (PreguntasList.type == 'return') {
-      document.getElementById('float2').classList.remove('displaynone')
-    } else {
 
-      document.getElementById('float1').classList.remove('displaynone')
-    }
+    document.getElementById('float2').classList.remove('displaynone')
+
     document.getElementById('q').innerHTML = PreguntasList.pregunta;
 
     document.getElementById('valorreturn').innerHTML = PreguntasList.valorreturn;
@@ -72,7 +116,7 @@ class GameController {
   getanswer(id, cq) {
     if (id == cq) {
 
-      console.log(`id${id} cq${cq}`)
+
       document.getElementById('float2').classList.add('displaynone')
       // document.getElementById('float1').classList.add('displaynone')
       document.getElementById('dadoon').classList.remove('displaynone')
@@ -110,24 +154,28 @@ class GameController {
     this.numplayer += 1;
   }
   gameLoad() {
+    // document.getElementById('settings').classList.add('displaynone')
+    // document.getElementById('containergame').classList.remove('displaynone')
+    // // document.getElementById('containertablero').classList.add('displaynone')
+    // document.getElementById('containertablerosmall').classList.remove('displaynone')
+
+  }
+  mapaS() {
     document.getElementById('settings').classList.add('displaynone')
     document.getElementById('containergame').classList.remove('displaynone')
     // document.getElementById('containertablero').classList.add('displaynone')
-
-
+    document.getElementById('containertablerosmall').classList.remove('displaynone')
+    this.maxtowin = 6;
   }
-
+  mapaXL() {
+    document.getElementById('settings').classList.add('displaynone')
+    document.getElementById('containergame').classList.remove('displaynone')
+    // document.getElementById('containertablero').classList.add('displaynone')
+    document.getElementById('containertablero2').classList.remove('displaynone')
+    this.maxtowin = 16;
+  }
   generateMap1() {
-    let tablero = document.getElementById('containertablero2');
 
-    let tablerohtml = "";
-    for (let index = 0; index < 2; index++) {
-
-      tablerohtml +=
-        `
-    `
-    }
-    tablero.innerHTML += tablerohtml;
   }
   dado4() {
     let res;
@@ -161,6 +209,7 @@ class GameController {
     console.log(`- - -  1: ${this.tiradaspl1}`)
     playerturno.innerHTML = Player1.name;
     this.nameplayer = Player1;
+
   }
 
 
@@ -173,6 +222,7 @@ class GameController {
       this.segundo = 1;
       this.nameplayer = Player1;
       console.log(`- - -  1: ${this.tiradaspl1}`)
+
     } else if (this.segundo == 1) {
       playerturno.innerHTML = Player1.name;
       Controlador.move(Player2, Controlador.dado4());
@@ -181,6 +231,7 @@ class GameController {
       this.segundo = 2;
       console.log(`- - -  2: ${this.tiradaspl2}`)
       this.nameplayer = Player2;
+
     }
   }
 
@@ -203,13 +254,13 @@ class GameController {
 
 
 
-    let posboxold = document.querySelector(`#pos${ubicacion} .box${positionbox}`);
+    // let posboxold = document.querySelector(`#pos${this.map}${ubicacion} .box${positionbox}`);
 
-    let posbox = document.querySelector(`#pos${ubicacion} .box${positionbox}`);
+    let posbox = document.querySelector(`#${this.map}${ubicacion} .box${positionbox}`);
     // posbox.innerHTML += stringname;
 
 
-    if (posbox.innerHTML != "") {
+    if (posbox.style.backgroundColor == "lightgreen") {
       console.log('esta lleno')
 
       PlayerNum.pos -= 1;
@@ -224,18 +275,18 @@ class GameController {
 
 
 
+
     // posbox.style.backgroundColor = PlayerNum.color;
   }
 
 }
-Controlador = new GameController(0, 0, 1, 2, 0, "Player1")
+Controlador = new GameController(0, 0, 1, 2, 0, "Player1", 'return', undefined, undefined, 'pos1')
 
 PreguntasList = new Pregu();
 
 window.addEventListener('load', () => {
 
 
-  gamestatus.innerHTML = 'Selecciona Jugador';
 
 })
 
@@ -256,12 +307,37 @@ document.getElementById('player2addsettings').addEventListener('click', () => {
   Player2 = new Players(2, player2name.value, 0, 1, 'salmon');
 
 })
+document.getElementById('mapsettingssmall').addEventListener('click', () => {
+  if (document.getElementById('mapsettingsbig').style.backgroundColor == "lightgreen") {
+    document.getElementById('mapsettingsbig').style.backgroundColor = "rgb(114, 185, 185)"
+    document.getElementById('mapsettingssmall').style.backgroundColor = "lightgreen";
 
+  } else {
+    document.getElementById('mapsettingssmall').style.backgroundColor = "lightgreen";
+    Controlador.map = 'pos1';
+  }
+
+})
+document.getElementById('mapsettingsbig').addEventListener('click', () => {
+  if (document.getElementById('mapsettingssmall').style.backgroundColor == "lightgreen") {
+    document.getElementById('mapsettingssmall').style.backgroundColor = "rgb(114, 185, 185)"
+    document.getElementById('mapsettingsbig').style.backgroundColor = "lightgreen";
+
+  } else {
+    document.getElementById('mapsettingsbig').style.backgroundColor = "lightgreen";
+    Controlador.map = 'pos2';
+  }
+
+})
 document.getElementById('btnLoadGame').addEventListener('click', () => {
-  Controlador.gameLoad()
-  Controlador.generateMap1()
 
 
+  if (Controlador.map == 'pos1') {
+    Controlador.mapaS()
+  } else if (Controlador.map == 'pos2') {
+    Controlador.mapaXL()
+
+  }
 
 
 

@@ -4,7 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 
+
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 	<title>Document</title>
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/settings.css">
@@ -25,17 +27,33 @@
 			<div class="preguntareturn" id="q"></div>
 			<div class="valorreturn" id="valorreturn"></div>
 			<div class="">
-				<div id="" class="">
-					<div id="r1" class="res1"></div>
-					<div id="r2" class="res1"></div>
-					<div id="r3" class="res1"></div>
-					<div id="r4" class="res1"></div>
+				<div id="" class="res1parq">
+					<div id="r1" class="res1q"></div>
+					<div id="r2" class="res1q"></div>
+					<div id="r3" class="res1q"></div>
+					<div id="r4" class="res1q"></div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div id="float3" class=" displaynone float3">
+		<div class="navflloat textcenter">
+			<div class="typequestion" id="typequestion"></div>
+			<span class="floatplayer" id="floatplayer"> </span>
 
-	<div id="float1" class=" displaynone float1">
+			<div class="preguntareturnwins" id="qwin"></div>
+			<div class="valorreturn" id="valorreturnwin"></div>
+			<div class="resparparent">
+				<div id="" class="res1par">
+					<div id="r1win" class="res1"></div>
+					<div id="r2win" class="res1"></div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div id="float1" class=" displaynone float1">
 		<div class="navflloat textcenter">
 			<div class="typequestion" id="typequestion"></div>
 			<span class="floatplayer" id="floatplayer"> </span>
@@ -51,17 +69,17 @@
 			</div>
 		</div>
 	</div>
-	</div>
+	</div> -->
 	<div id="" class="containernav">
 		as
 		<!-- abre nav -->
 		<div class="nav">
-			<span class=" crosscursor navbaritem" id="">DEV</span>
-			<span class=" crosscursor navbaritem" id="horanow">Hora</span>
+			<!-- <span class=" crosscursor navbaritem" id="">DEV</span> -->
+			<!-- <span class=" crosscursor navbaritem" id="horanow">Hora</span> -->
 			<span class="crosscursor navbaritem" id="horanow">Turno de Jugador <span id="playerturno"
 					class="navbarsubitem">undefined</span> </span>
-			<span class="crosscursor navbaritem" id="horanow">Estado de la partida <span id="estadopartida"
-					class="navbarsubitem">SIN INICIAR</span> </span>
+			<!-- <span class="crosscursor navbaritem" id="horanow">Estado de la partida <span id="estadopartida"
+					class="navbarsubitem">SIN INICIAR</span> </span> -->
 
 		</div>
 	</div>
@@ -96,6 +114,23 @@
 					<!-- 					<img src="img/dicesmal2.png"  id="rndname2" width="60px" alt=""> -->
 				</div>
 
+			</section>
+			<section class="sectionbg half50">
+
+				<h3 class=" textcenter subtitlewindow">Mapa</h3>
+
+
+				<div class="textcenter playerbox  half50 ">
+					<p class="subtitlewindowtwo" onclick="" id="mapsettingssmall"> Pequeño</p>
+
+					<!-- 	<img src="img/dicesmal2.png" id="rndname1" width="60px" alt=""> -->
+				</div>
+
+				<div class="textcenter  playerbox  half50 ">
+					<p class="subtitlewindowtwo" onclick="" id="mapsettingsbig"> Grande </p>
+
+					<!-- 					<img src="img/dicesmal2.png"  id="rndname2" width="60px" alt=""> -->
+				</div>
 
 			</section>
 
@@ -136,147 +171,146 @@
 					<input id="diceresult" class="diceresult" disabled type="text" value="1">
 				</div>
 			</div>
-			<div id="containertablero2" class="containertablero">
+			<div id="containertablerosmall" class="displaynone">
+				<div id="board1" class="board2">
+					<div id="pos11" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos12" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos13" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos14" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos15" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+
+				</div>
+			</div>
+
+			<div id="containertablero2" class="displaynone containertablero">
+
+
 				<div id="board2" class="board2">
-					<div id="pos1" class="square">
+					<div id="pos21" class="square">
 						<div class="box1"></div>
 						<div class="box2"></div>
 						<div class="box3"></div>
 						<div class="box4"></div>
 					</div>
-					<div id="pos2" class="square">
+					<div id="pos22" class="square">
 						<div class="box1"></div>
 						<div class="box2"></div>
 						<div class="box3"></div>
 						<div class="box4"></div>
 					</div>
-					<div id="pos3" class="square">
+					<div id="pos23" class="square">
 						<div class="box1"></div>
 						<div class="box2"></div>
 						<div class="box3"></div>
 						<div class="box4"></div>
 					</div>
-					<div id="pos4" class="square">
+					<div id="pos24" class="square">
 						<div class="box1"></div>
 						<div class="box2"></div>
 						<div class="box3"></div>
 						<div class="box4"></div>
 					</div>
-					<div id="pos5" class="square">
+					<div id="pos25" class="square">
 						<div class="box1"></div>
 						<div class="box2"></div>
 						<div class="box3"></div>
 						<div class="box4"></div>
 					</div>
-
+					<div id="pos26" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos27" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos28" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos29" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos210" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos211" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos212" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos213" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos214" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos215" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
+					<div id="pos216" class="square">
+						<div class="box1"></div>
+						<div class="box2"></div>
+						<div class="box3"></div>
+						<div class="box4"></div>
+					</div>
 				</div>
 			</div>
+
 		</div>
-		<div id="containertablero" class="  displaynone ">
-
-
-
-			<div id="board" class="board">
-				<div id="pos1" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos2" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos3" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos4" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos5" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos6" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos7" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos8" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos9" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos10" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos11" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos12" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos13" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos14" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos15" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-				<div id="pos16" class="square">
-					<div class="box1"></div>
-					<div class="box2"></div>
-					<div class="box3"></div>
-					<div class="box4"></div>
-				</div>
-			</div>
-		</div>
-
-		</divcl>
 
 	</div>
 	<script src="js/globals.js"></script>

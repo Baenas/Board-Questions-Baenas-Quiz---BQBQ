@@ -1,11 +1,12 @@
 .gamepanel {
   background-color: rosybrown;
-  width: 90%;
-  height: auto;
+  width: 80%;
+  height:80vh;
 
   box-shadow: 5px 5px 5px rgb(138, 111, 111);
 
   margin-left: 20px;
+  margin:0 auto;
 }
 
 .parentgame {
